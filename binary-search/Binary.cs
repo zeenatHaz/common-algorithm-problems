@@ -70,6 +70,11 @@ namespace binary_search
             return -1; // if the element is not found.
         }
 
+        public int ceilingOfANumber(int[] arr, int element)
+        {
+            throw new NotImplementedException();
+        }
+
         public int findElement(int[] arr, int element)
         {   
             int low = 0, high = arr.Length - 1;
@@ -105,6 +110,26 @@ namespace binary_search
             return -1;
 
          
+        }
+
+        public int minDifference(int[] arr)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int nextLetter()
+        {
+            throw new NotImplementedException();
+        }
+
+        public int[] numberRange(int[] arr)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int searchInAInfSortedArr(int[] arr)
+        {
+            throw new NotImplementedException();
         }
     }
 }

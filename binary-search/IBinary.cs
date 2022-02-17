@@ -11,5 +11,18 @@ namespace binary_search
         public int Bitonic(int[] arr);
 
         public int findElement(int[] arr, int element);
+
+        public int ceilingOfANumber(int[] arr, int element);
+
+        public int nextLetter(); //LC 744
+
+        public int[] numberRange(int[] arr);
+
+        public int searchInAInfSortedArr(int[] arr);
+
+        public int minDifference(int[] arr);
+
+
+
     }
 }
