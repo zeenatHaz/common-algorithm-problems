@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace binary_search
 {
-    public interface IBinary
+    public interface IBinary // pattern modified Binarys search
     {
         public int Bitonic(int[] arr);
 
@@ -18,9 +18,13 @@ namespace binary_search
 
         public void numberRange(int[] arr,int target);
 
-        public int searchInAInfSortedArr(int[] arr);
+        public int searchInAInfSortedArr(int[] arr,int target); //LC33
 
         public IList<int> minDifference(int[] arr, int k, int x);//LC658
+
+        public int FindMin(int[] arr); //LC 153
+
+        public int FindMinwithDuplicates(int[] arr); //LC 154
 
 
 

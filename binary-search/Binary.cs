@@ -183,9 +183,81 @@ namespace binary_search
 
 
 
-        public int searchInAInfSortedArr(int[] arr)
+        public int searchInAInfSortedArr(int[] a,int target)
         {
-            throw new NotImplementedException();
+            // single traversal approach
+            int low = 0, high = a.Length - 1;
+            int ans = -1;
+            while (low <= high)
+            {
+                int mid = low + (high - low) / 2;
+                if (a[mid] == target)
+                {
+                    ans = mid;
+                    break;
+                }
+                else if (a[mid] >= a[low]) // if left part is ordered.
+                {
+                    if (target >= a[low] && target < a[mid]) high = mid - 1;
+                    else low = mid + 1;
+                }
+                else // right part is ordered,
+                {
+                    if (target > a[mid] && target <= a[high]) low = mid + 1;
+                    else high = mid - 1;
+                }
+            }
+            return ans;
+        }
+
+
+     
+            public int FindMin(int[] nums)
+            {
+
+                int left = 0, right = nums.Length - 1;
+
+                while (left < right)
+                {
+                    if (nums[left] < nums[right])
+                        return nums[left]; // no need to do anything here because youur array is already sorted..
+                    //so just return the first element.
+                    //otherwise do the followng..normal Binary Search.
+                    int mid = left + (right - left) / 2;
+
+                    if (nums[mid] >= nums[left])  // left part is ordered.
+                        left = mid + 1;
+                    else
+                        right = mid;
+                }
+
+
+                return nums[left];
+
+
+            }
+
+        public int FindMinwithDuplicates(int[] arr) //say it is 4 5 6 8 9 0 1 1 2 3
+        {
+            int l = 0, h = arr.Length - 1;
+            while (l < h)
+            {
+                int mid = l + (h - l) / 2;
+                if(arr[mid]> arr[h])
+                {
+                    l = mid + 1;
+                }
+                else if(arr[mid]<arr[h])
+                {
+                    h = mid;
+                }
+                else
+                {
+                    h--; // decreemtn high if num[mid]==nums[h]
+                }
+            }
+
+            return arr[l];
         }
 
 

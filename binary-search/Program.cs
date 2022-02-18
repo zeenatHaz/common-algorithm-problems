@@ -8,7 +8,7 @@ namespace binarySearch
     {
         public static void Main(string[] args)
         {
-            int[] arr = { 8, 10, 20, 80, 100, 200, 400, 500, 3, 2, 1 };
+            int[] arr = { 4, 5, 6, 7, 0, 1, 2 };
             int[] arrC = { 1, 2, 8, 10, 10, 12, 19 };
             Binary obj = new Binary();
             Console.WriteLine("max is :"+ obj.Bitonic(arr));
@@ -38,7 +38,12 @@ namespace binarySearch
             {
                 Console.WriteLine(ele);
             }
+
+            Console.WriteLine("Answer is :" + obj.searchInAInfSortedArr(arr, 3));
             //LC 658.
+
+            Console.WriteLine("the minimum element is: " + obj.FindMin(arr));
+            Console.WriteLine("the minimum element in the array with duplicates is: " + obj.FindMinwithDuplicates(arr));
             Console.ReadLine();
         }
     }
