@@ -16,7 +16,7 @@ namespace binary_search
 
         public char nextLetter(char[] letters, char target); //LC 744
 
-        public int[] numberRange(int[] arr);
+        public void numberRange(int[] arr,int target);
 
         public int searchInAInfSortedArr(int[] arr);
 

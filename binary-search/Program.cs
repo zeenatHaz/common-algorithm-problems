@@ -29,6 +29,9 @@ namespace binarySearch
             char[] letters = { 'c', 'f', 'j' };
             char key = 'a';
             Console.WriteLine("next greatest charater is :" + obj.nextLetter(letters, key));
+
+            int[] firstAndSecond = { 5, 7, 7, 8, 8, 10 };
+            obj.numberRange(firstAndSecond, 8);
             Console.ReadLine();
         }
     }

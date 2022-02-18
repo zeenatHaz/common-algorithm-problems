@@ -160,14 +160,65 @@ namespace binary_search
             return letters[left];
         }
 
-        public int[] numberRange(int[] arr)
+        public void numberRange(int[] arr,int target)
         {
-            throw new NotImplementedException();
+            int[] res = new int[2];
+            res[0] = findFirst(arr,target);
+            res[1] = findLast(arr,target);
+            Console.Write("first index is :" + res[0] + " and second index is:" + res[1]);
         }
+
+       
 
         public int searchInAInfSortedArr(int[] arr)
         {
             throw new NotImplementedException();
+        }
+
+
+
+        // private functions
+
+        private int findFirst(int[] nums, int target)
+        {
+            int idx = -1;
+            int start = 0;
+            int end = nums.Length - 1;
+            while (start <= end)
+            {
+                int mid = (start + end) / 2;
+                if (nums[mid] >= target)
+                {
+                    end = mid - 1;
+                }
+                else
+                {
+                    start = mid + 1;
+                }
+                if (nums[mid] == target) idx = mid;
+            }
+            return idx;
+        }
+
+        private int findLast(int[] nums, int target)
+        {
+            int idx = -1;
+            int start = 0;
+            int end = nums.Length - 1;
+            while (start <= end)
+            {
+                int mid = (start + end) / 2;
+                if (nums[mid] <= target)
+                {
+                    start = mid + 1;
+                }
+                else
+                {
+                    end = mid - 1;
+                }
+                if (nums[mid] == target) idx = mid;
+            }
+            return idx;
         }
     }
 }
