@@ -32,6 +32,13 @@ namespace binarySearch
 
             int[] firstAndSecond = { 5, 7, 7, 8, 8, 10 };
             obj.numberRange(firstAndSecond, 8);
+
+            IList<int> res= obj.minDifference(arrC, 4, 10);
+            foreach(var ele in res)
+            {
+                Console.WriteLine(ele);
+            }
+            //LC 658.
             Console.ReadLine();
         }
     }

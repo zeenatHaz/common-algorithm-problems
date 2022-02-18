@@ -20,7 +20,7 @@ namespace binary_search
 
         public int searchInAInfSortedArr(int[] arr);
 
-        public int minDifference(int[] arr);
+        public IList<int> minDifference(int[] arr, int k, int x);//LC658
 
 
 
