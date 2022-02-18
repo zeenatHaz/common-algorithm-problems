@@ -70,10 +70,6 @@ namespace binary_search
             return -1; // if the element is not found.
         }
 
-        public int ceilingOfANumber(int[] arr, int element)
-        {
-            throw new NotImplementedException();
-        }
 
         public int findElement(int[] arr, int element)
         {   
@@ -112,14 +108,56 @@ namespace binary_search
          
         }
 
+
+        public int ceilingOfANumber(int[] arr, int element)
+        {
+            if (arr.Length == 0)
+            {
+                return -1;
+
+            }
+
+            int l = 0, h = arr.Length - 1;
+            while (l <= h)
+            {
+                int mid = l + (h - l) / 2;
+                if(arr[mid] == element){
+                    return mid;
+                }
+                else if (arr[mid] > element)
+                {
+                    h = mid - 1;
+                }
+                else
+                {
+                    l = mid + 1;
+                }
+            }
+
+            return l;
+        }
+
         public int minDifference(int[] arr)
         {
             throw new NotImplementedException();
         }
 
-        public int nextLetter()
+        public char nextLetter(char[] letters, char target)
         {
-            throw new NotImplementedException();
+            if (target >= letters[letters.Length - 1])
+                return letters[0];
+
+            int left = 0, right = letters.Length - 1;
+            while (left < right)
+            {
+                int mid = left + (right - left) / 2;
+                if (letters[mid] <= target)
+                    left = mid + 1;
+                else
+                    right = mid;
+            }
+
+            return letters[left];
         }
 
         public int[] numberRange(int[] arr)

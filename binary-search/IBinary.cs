@@ -14,7 +14,7 @@ namespace binary_search
 
         public int ceilingOfANumber(int[] arr, int element);
 
-        public int nextLetter(); //LC 744
+        public char nextLetter(char[] letters, char target); //LC 744
 
         public int[] numberRange(int[] arr);
 
