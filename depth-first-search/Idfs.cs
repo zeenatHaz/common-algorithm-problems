@@ -8,5 +8,9 @@ namespace depth_first_search
 {
     public interface Idfs
     {
+
+        public int treeSumPathSum(TreeNode node);
     }
+
+
 }
