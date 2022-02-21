@@ -8,5 +8,6 @@ namespace bit_operations
 {
     public interface IBit
     {
+        public int SingleNumber(int[] arr);
     }
 }
