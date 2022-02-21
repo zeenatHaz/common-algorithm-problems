@@ -39,24 +39,26 @@ namespace depth_first_search
                 if (node.right != null) findPaths(node.right, str + "->", paths);
             }
         }
+        int res = 0;
+        public int DiameterOfABTree(TreeNode root)
+        {
+            getDiameter(root);
+            return res;
 
-        public int DiameterOfABTree(TreeNode node)
+        }
+        private int getDiameter(TreeNode node)
         {
             if (node == null)
             {
-                
                 return 0;
             }
-            int max = 0;
-            maxDepth(node, ref max);
-            return max;
-           
-        }
-        private int maxDepth(TreeNode node, ref int max)
-        {
-            int l = maxDepth(node.left, ref max);
-            int r = maxDepth(node.right,ref max);
-            max = Math.Max(max, l + r);
+            // Find height of left and right subTrees
+            int l = getDiameter(node.left);
+            int r = getDiameter(node.right);
+            // New global max is either already reached,
+            // or is acheived using this node as the root
+            res = Math.Max(res, l + r);
+            // Return height of tree rooted at this node
             return 1 + Math.Max(l, r);
             
         }
