@@ -6,7 +6,168 @@ using System.Threading.Tasks;
 
 namespace depth_first_search
 {
-    public class dfs
+    public class DFS : IDFS
     {
+        public IList<string> BinaryTreePaths(TreeNode node)
+        {
+            List<string> paths = new List<string>();
+            if (node == null)
+            {
+                return paths;
+            }
+            string str = "";
+            findPaths(node, str, paths);
+            return paths;
+        }
+
+        private void findPaths(TreeNode node, string str, List<string> paths)
+        {
+            
+            if (node == null)
+            {
+                return;
+            }
+            str += node.val;
+            if(node.left==null && node.right == null)
+            {
+                paths.Add(str);
+                return;
+            }
+            else
+            {
+                if(node.left!=null)findPaths(node.left, str+"->", paths);
+                if (node.right != null) findPaths(node.right, str + "->", paths);
+            }
+        }
+
+        public int DiameterOfABTree(TreeNode node)
+        {
+            if (node == null)
+            {
+                
+                return 0;
+            }
+            int max = 0;
+            maxDepth(node, ref max);
+            return max;
+           
+        }
+        private int maxDepth(TreeNode node, ref int max)
+        {
+            int l = maxDepth(node.left, ref max);
+            int r = maxDepth(node.right,ref max);
+            max = Math.Max(max, l + r);
+            return 1 + Math.Max(l, r);
+            
+        }
+        public int MaxPathSum(TreeNode node)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int NoOfIslands(int[][] arr)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool HasPathSum(TreeNode root, int sum)
+        {
+            if (root == null)
+            {
+                return false;
+            }
+            else if (root.left == null && root.right == null && sum - root.val == 0)
+            {
+                return true;
+            }
+            else
+            {
+                return HasPathSum(root.left, sum - root.val) || HasPathSum(root.right, sum - root.val);
+            }
+        }
+
+        public IList<IList<int>> PathSum(TreeNode root, int targetSum)
+        {
+            List<IList<int>> res = new List<IList<int>>();
+            if (root == null)
+            {
+                return res;
+            }
+            helper(root, targetSum, new List<int>(), res);
+            return res;
+        }
+
+        private void helper(TreeNode root, int target, List<int> list, List<IList<int>> res)
+        {
+            if (root == null)
+            {
+                return;
+            }
+            list.Add(root.val);
+            if (root.left == null && root.right == null && root.val - target == 0)
+            {
+                res.Add(list);
+                return;
+            }
+            helper(root.left, target - root.val, list, res);
+            helper(root.right, target - root.val, list, res);
+
+            //backtracking becuase you need to remove the root before backtracking.
+            list.Remove(list.Count - 1);
+        }
+
+        public int PathSumIII(TreeNode node)
+        {
+            throw new NotImplementedException();
+        }
+
+       
+
+        public int StringValid(TreeNode node)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int SumNumbers(TreeNode root)
+        {
+            if (root == null)
+            {
+                return 0;
+            }
+            List<string> paths = new List<string>();
+            int sum = 0;
+            calculatePathValues(root, "", paths);
+            foreach (var ele in paths)
+            {
+                sum = sum + Convert.ToInt32(ele);
+            }
+
+            return sum;
+        }
+
+        private void calculatePathValues(TreeNode root,string path,List<string> paths)
+        {
+            if (root == null)
+            {
+                return;
+            }
+            path = path + root.val;
+            if(root.left==null && root.right == null)
+            {
+                //means we have reached a leaf node.
+                paths.Add(path);
+                return;
+            }
+            if (root.left != null)
+            {
+                calculatePathValues(root.left, path, paths);
+            }
+            if (root.right != null)
+            {
+                calculatePathValues(root.right, path, paths);
+            }
+
+
+        }
     }
 }
