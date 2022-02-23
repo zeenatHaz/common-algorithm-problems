@@ -10,6 +10,9 @@ namespace slidingWindow
     {
         public IList<int> FindSubstring(string s, string[] words);//LC30
         public string MinWindow(string s, string t); //LC 76
-       
+
+        public int maxSumSubArray(int[] arr,int k);
+
+
     }
 }

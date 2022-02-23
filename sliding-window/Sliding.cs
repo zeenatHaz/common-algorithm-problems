@@ -126,5 +126,26 @@ namespace slidingWindow
                 return result;
 
         }
+
+        public int maxSumSubArray(int[] arr,int k)
+        {
+            int sum = 0;
+            int max = 0;
+            for(int i = 0; i < k; i++)
+            {
+                sum = sum + arr[i];
+            }
+
+            // decerment the left side.
+            int tempSum = sum;
+            for(int i = k; i < arr.Length; i++)
+            {
+                 tempSum = tempSum + arr[i] - arr[i - k];
+                max = Math.Max(sum, tempSum);
+            }
+
+
+            return max;
+        }
     }
 }
