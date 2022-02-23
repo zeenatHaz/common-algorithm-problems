@@ -8,7 +8,7 @@ namespace depth_first_search
     {
         public static void Main(string[] args)
         {
-            dfs obj = new dfs();
+           
 
         }
     }
