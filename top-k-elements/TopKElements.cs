@@ -154,7 +154,7 @@ namespace top_k_elements
             }
 
             var result = 0;
-            while (pq.Count > 1 || (pq.Count == 1 && pq.Values.First() > 1))
+            while (pq.Count > 1)
             {
                 var x = pq.Keys.First();
                 if (pq[x] == 1)
