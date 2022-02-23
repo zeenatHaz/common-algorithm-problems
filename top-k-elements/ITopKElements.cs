@@ -16,5 +16,13 @@ namespace top_k_elements
         public void topKElements_minHeap_smallest(List<int> elements, int k);
 
         public int FindKthLargest(List<int> elements, int k);
+
+        public int[][] KClosest(int[][] points, int k);
+
+        public IList<string> TopKFrequent(string[] words, int k); //LC 692
+
+        public int ConnectSticks(int[] arr);
+
+
     }
 }

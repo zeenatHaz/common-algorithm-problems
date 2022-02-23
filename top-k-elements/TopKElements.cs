@@ -120,6 +120,64 @@ namespace top_k_elements
             return minHeap[0];
         }
 
-       
+        public int[][] KClosest(int[][] points, int k)
+        {
+            return points.OrderBy(x => x[0] * x[0] + x[1] * x[1]).Take(k).ToArray();
+
+            //sorted dictionary solution.
+
+        }
+        public IList<string> TopKFrequent(string[] words, int k)
+        {
+            Dictionary<string, int> map = new Dictionary<string, int>();
+            foreach (var word in words)
+            {
+                if (!map.ContainsKey(word))
+                {
+                    map[word] = 0;
+                }
+                map[word] += 1;
+            }
+
+            return map.OrderByDescending(x => x.Value).ThenBy(x => x.Key).Select(x => x.Key).Take(k).ToList();
+        }
+
+        public int ConnectSticks(int[] sticks)
+        {
+            var pq = new SortedList<int, int>();
+            foreach (var stick in sticks)
+            {
+                if (pq.ContainsKey(stick))
+                    pq[stick]++;
+                else
+                    pq[stick] = 1;
+            }
+
+            var result = 0;
+            while (pq.Count > 1 || (pq.Count == 1 && pq.Values.First() > 1))
+            {
+                var x = pq.Keys.First();
+                if (pq[x] == 1)
+                    pq.Remove(x);
+                else
+                    pq[x]--;
+
+                var y = pq.Keys.First();
+                if (pq[y] == 1)
+                    pq.Remove(y);
+                else
+                    pq[y]--;
+
+                var cost = x + y;
+                result += cost;
+
+                if (pq.ContainsKey(cost))
+                    pq[cost]++;
+                else
+                    pq[cost] = 1;
+            }
+
+            return result; ;
+        }
     }
 }
