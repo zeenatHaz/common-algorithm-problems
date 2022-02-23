@@ -84,5 +84,47 @@ namespace slidingWindow
             return true;
 
         }
+        public string MinWindow(string s, string t)
+        {
+            string result = "";
+            s = "ADOBECODEBANC";
+            t = "ABC";
+            if (t.Length > s.Length || t.Length==0 || s.Length==0)
+            {
+                return result;
+            }
+            int minLength = int.MaxValue;
+            int windlowLength = t.Length;
+
+            Dictionary<char, int> dic = new Dictionary<char, int>();
+            foreach (char c in t)
+            {
+                if (dic.ContainsKey(c))
+                    dic[c]++;
+                else
+                    dic.Add(c, 1);
+            }
+            // A:1,B:1,C:1
+            int left = 0, right = 0, minlen = s.Length + 1, counter = dic.Count;
+            while (right < s.Length)
+            {
+                char rightChar = s[right];
+                if (dic.ContainsKey(rightChar))
+                {
+                    dic[rightChar]--;
+                    if (dic[rightChar] == 0)
+                        counter--;
+                }
+
+                right++;
+
+                while (counter == 0)
+                {
+
+                }
+            }
+                return result;
+
+        }
     }
 }
