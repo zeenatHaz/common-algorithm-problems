@@ -23,6 +23,10 @@ namespace top_k_elements
 
         public int ConnectSticks(int[] arr);
 
+        public int maxDistinctNum(int[] a, int n, int k); //GOG
+
+    
+
 
     }
 }

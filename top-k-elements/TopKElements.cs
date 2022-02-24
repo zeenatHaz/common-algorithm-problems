@@ -179,5 +179,122 @@ namespace top_k_elements
 
             return result; ;
         }
+
+        public int maxDistinctNum(int[] a, int n, int k)
+        {
+            int res = 0;
+            Dictionary<int, int> dict = new Dictionary<int, int>();
+
+            for(int i = 0; i < a.Length; i++)
+            {
+                if (dict.ContainsKey(a[i]))
+                {
+                    if(k>0)
+                    k--;
+                }
+                else
+                {
+                    dict.Add(a[i], 1);
+                }
+            }
+            //if k is equal to 0 ,there may be duplicates..
+            //so put the 
+            //1 1 2 2 3 4 4 5
+            //dict : 1 :1
+                     // 2:1 
+                     //k==0
+                     //3:1
+                     //4:1
+                     //
+
+            res = dict.Count();
+        
+            return res;
+          
+        }
+
+
+        public string MakeGood(string s)
+        {
+
+            if (s == null || s.Length < 2)
+                return s;
+
+            Stack<char> stack = new Stack<char>();
+
+            foreach (char c in s)
+            {
+                if (stack.Count > 0 && IsSameCharButDifferentCase(stack.Peek(), c))
+                    stack.Pop();
+                else
+                    stack.Push(c);
+            }
+
+            StringBuilder sb = new StringBuilder();
+            while (stack.Count > 0)
+                sb.Insert(0, stack.Pop());
+           
+            return sb.ToString();
+        }
+
+        public bool IsSameCharButDifferentCase(char c1, char c2)
+        {
+            return Math.Abs(c1 - c2) == 32;
+        }
     }
+
+
+
+    ////LC 895
+    ///
+    public class FreqStack
+    {
+        private Dictionary<int, int> freDic;
+        private Dictionary<int, Stack<int>> priorityOrder;        
+        int maxFrequency = 0;// points to the stack with max freq.
+        public FreqStack()
+        {
+            freDic = new Dictionary<int, int>();
+            priorityOrder = new Dictionary<int, Stack<int>>();
+        }
+
+        public void Push(int x)
+        {
+
+            if (freDic.ContainsKey(x))
+            {
+                freDic[x]++;
+            }
+            else
+            {
+                freDic.Add(x, 1);
+            }
+
+            int curValFreq = freDic[x];
+            if (maxFrequency < curValFreq)
+                maxFrequency = curValFreq;
+
+            if (priorityOrder.ContainsKey(curValFreq))
+            {
+                priorityOrder[curValFreq].Push(x);
+            }
+            else
+            {
+                var stack = new Stack<int>();
+                stack.Push(x);
+                priorityOrder.Add(curValFreq, stack);
+            }
+        }
+
+        public int Pop()
+        {
+            var stack = priorityOrder[maxFrequency];
+            int popVal = stack.Pop();
+            if (stack.Count == 0)
+                maxFrequency--;
+            freDic[popVal]--;
+            return popVal;
+        }
+    }
+
 }
