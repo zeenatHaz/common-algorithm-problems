@@ -150,26 +150,40 @@ namespace slidingWindow
 
         public int MinSubArrayLen(int target, int[] nums)
         {
-            int res = 0;
-            int minLength = int.MaxValue;
-            int left = 0, right = 0;
-            int sum = 0;
-            for( right = 0; right < nums.Length; right++)
+            if (nums.Length == 0)
             {
-                sum = sum + nums[right];
-                if (sum == target)
-                {
-                    // means we have found the subArray.
-                    // calculate the length of it.
-                    minLength = Math.Min(minLength, right - left + 1);
-                    left++;
-                }
+                return 0;
             }
 
+            int res = int.MaxValue;
+            int left = 0;
+            int sum = nums[0];
+            int right = 0;
 
+            while (left != nums.Length)
+            {
+                if (sum < target)
+                {
+                    if (right < nums.Length - 1)
+                    {
+                        right++;
+                        sum += nums[right];
+                    }
+                    else
+                    {
+                        sum -= nums[left];
+                        left++;
+                    }
 
+                    continue;
+                }
 
-            return minLength;
+                res = Math.Min(right - left + 1, res);
+                sum -= nums[left];
+                left++;
+            }
+
+            return res == int.MaxValue ? 0 : res;
 
         }
     }

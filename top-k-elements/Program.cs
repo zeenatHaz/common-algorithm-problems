@@ -38,7 +38,9 @@
 
 
             string makeGood = "leEeetcode";
-            string s = obj.MakeGood(makeGood);
+          //  string s = obj.MakeGood(makeGood);
+            obj.FindMaximizedCapital();
+
             Console.ReadLine();
 
         }
