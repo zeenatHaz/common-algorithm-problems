@@ -10,5 +10,6 @@ namespace slow_and_fast_pointers
     {
         public bool HasCycle(ListNode head);
         public bool IsHappy(int n);
+        public ListNode MiddleNode(ListNode head);
     }
 }
