@@ -13,13 +13,13 @@ namespace cyclic_sort
         public int FindDuplicate1(int[] nums);
         public int FindDuplicate2(int[] nums); //without using extra constant space.
 
-        public int[] FindErrorNums1(int[] nums);
+       
         public int[] FindErrorNums2(int[] nums);
 
         public IList<int> FindDuplicates1(int[] nums); //find all lC 442
         public IList<int> FindDuplicates2(int[] nums); //find all lC 442 //w/o using extra space.
 
-
-        public void printKMissing(int[] arr, int n, int k);
+        public int FirstMissingPositive(int[] nums);// LC41//hard.
+        public List<int> printKMissing(int[] arr, int n, int k);
     }
 }

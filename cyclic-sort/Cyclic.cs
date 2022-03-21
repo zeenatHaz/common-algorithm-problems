@@ -135,5 +135,54 @@ namespace cyclic_sort
             }
             return res;
         }
+
+        public int FirstMissingPositive(int[] nums)
+        {
+            int possibleSmallestPos = 1;
+            HashSet<int> hs = new HashSet<int>(nums);
+            while (true)
+            {
+                if (!hs.Contains(possibleSmallestPos))
+                {
+                    return possibleSmallestPos;
+                }
+                else
+                {
+                    possibleSmallestPos++;
+                    continue;
+                }
+            }
+
+            return -1;
+        }
+        public List<int> printKMissing(int[] arr, int n, int k)
+        {
+            //lets say arr[2,3,4]
+
+            int missingNumber = 1;
+            List<int> res = new List<int>();
+            HashSet<int> hs = new HashSet<int>(arr);
+            for(int i = 0; i < n; i++)
+            {
+                if (res.Count != k)
+                {
+                    if (!hs.Contains(missingNumber))
+                    {
+                        res.Add(missingNumber);
+                        missingNumber++;
+                    }
+                    else
+                    {
+                        missingNumber++;
+                    }
+                }
+                else
+                {
+                    break;
+                }
+              
+            }
+            return res;
+        }
     }
 }
