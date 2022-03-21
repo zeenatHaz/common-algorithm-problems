@@ -8,5 +8,6 @@ namespace cyclic_sort
 {
     public interface ICyclic
     {
+        public int MissingNumber(int[] nums);
     }
 }

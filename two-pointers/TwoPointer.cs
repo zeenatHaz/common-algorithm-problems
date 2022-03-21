@@ -91,5 +91,111 @@ namespace two_pointers
                 index++;
             }
         }
+
+
+        public int NumSubarrayProductLessThanK(int[] nums, int k)
+        {
+            //lets say the array is [10,5,2,6] and k=100
+
+            if (k <= 1 || nums == null || nums.Length == 0) //base case
+            {
+                return 0;
+            }
+            int ans = 0;
+            int product = 1, left = 0;
+            int count = 0;
+            for (int right = 0; right < nums.Length; right++)
+            {
+                product = product * nums[right]; // 1* 10
+
+                while (product >= k)
+                {
+
+                    product = product / nums[left];
+                    left++;
+                }
+                ans = ans + (right - left + 1);
+            }
+
+            return ans;
+        }
+
+        public void SortColors(int[] nums)
+        {
+            // Input: nums = [2, 0, 2, 1, 1, 0]
+            //Output:[0,0,1,1,2,2]
+
+            List<int> red = new List<int>();
+            List<int> white = new List<int>();
+            List<int> blue = new List<int>();
+            for (int i = 0; i < nums.Length; i++)
+            {
+                if (nums[i] == 0)
+                {
+                    red.Add(nums[i]);
+                }
+                if (nums[i] == 1)
+                {
+                    white.Add(nums[i]);
+                }
+                if (nums[i] == 2)
+                {
+                    blue.Add(nums[i]);
+                }
+            }
+            var all = red.Concat(white)
+                                    .Concat(blue)
+                                    .ToList();
+
+            for (int k = 0; k < all.Count(); k++)
+            {
+                nums[k] = all[k];
+            }
+
+        }
+
+        public bool BackspaceCompare(string s, string t)
+        {
+
+            if (s.Length == 0 || t.Length == 0)
+            {
+                return false;
+            }
+
+            string s1 = this.checkString(s);
+            string s2 = this.checkString(t);
+
+
+            return s1.Equals(s2);
+        }
+
+
+
+        private string checkString(string s)
+        {
+
+
+            Stack<char> st = new Stack<char>();
+            foreach (var ele in s)
+            {
+                if (ele == '#')
+                {
+                    if (st.Count > 0)
+                    {
+                        char x = st.Pop();
+                        Console.WriteLine(x);
+                    }
+
+
+                }
+                else
+                {
+
+                    st.Push(ele);
+
+                }
+            }
+            return new string(st.ToArray());
+        }
     }
 }
