@@ -44,5 +44,34 @@
             Console.ReadLine();
 
         }
+        public int[] FindErrorNums1(int[] nums)
+        {
+            int[] arrRe = new int[2];
+            int[] temp = new int[nums.Length];
+            Array.Clear(temp, 0, nums.Length);
+
+            for (int i = 0; i < nums.Length; i++)
+            {
+                temp[nums[i] - 1] += 1;
+            }
+
+            foreach (var ele in temp)
+            {
+                Console.WriteLine($"ele is {ele}");
+            }
+            for (int i = 0; i < temp.Length; i++)
+            {
+                if (temp[i] == 2) //duplicate element
+                {
+                    arrRe[0] = i + 1;
+                }
+                else if (temp[i] == 0) //replace element
+                {
+                    arrRe[1] = i + 1;
+                }
+            }
+
+            return arrRe;
+        }
     }
 }

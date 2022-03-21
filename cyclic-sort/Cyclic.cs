@@ -79,5 +79,61 @@ namespace cyclic_sort
             return res;
 
         }
+        public int[] FindErrorNums2(int[] nums)
+        {
+            List<int> res = new List<int>();
+            int n = nums.Length;
+            int dup = -1;
+            Array.Sort(nums);
+            for (int i = 0; i <= nums.Length - 1; i++)
+            {
+                if (i < nums.Length - 1)
+                {
+                    if (nums[i] == nums[i + 1])
+                    {
+                        dup = nums[i];
+                    }
+                }
+
+                res.Add(i + 1);
+            }
+
+            int[] ans = new int[2];
+            ans[0] = dup;
+            ans[1] = Convert.ToInt32(res.Except(nums).First());
+            return ans;
+        }
+
+        public IList<int> FindDuplicates1(int[] nums)
+        {
+
+            List<int> res = new List<int>();
+            HashSet<int> hs = new HashSet<int>();
+            foreach (var ele in nums)
+            {
+                if (!hs.Contains(ele))
+                {
+                    hs.Add(ele);
+                }
+                else
+                {
+                    res.Add(ele);
+                }
+            }
+
+            return res;
+        }
+        public IList<int> FindDuplicates2(int[] nums)
+        {
+            List<int> res = new List<int>();
+            for (int i = 0; i < nums.Length; ++i)
+            {
+                int index = Math.Abs(nums[i]) - 1;
+                if (nums[index] < 0)
+                    res.Add(Math.Abs(index + 1));
+                nums[index] = -nums[index];
+            }
+            return res;
+        }
     }
 }
