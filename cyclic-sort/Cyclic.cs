@@ -184,5 +184,46 @@ namespace cyclic_sort
             }
             return res;
         }
+
+        public int minSwapsCouples(int[] row)
+        {
+
+            var map = new Dictionary<int, int>();
+
+            for (var j = 0; j < row.Length; j++)
+            {
+                map.Add(row[j], j);
+            }
+            var i = 0;
+
+            var count = 0;
+            var nextNumber = 0;
+            while (i < row.Length)
+            {
+                if (row[i] / 2 != row[i + 1] / 2)
+                {
+                    if (row[i] % 2 == 0)
+                    {
+                        nextNumber = row[i] + 1;
+                    }
+                    else
+                    {
+                        nextNumber = row[i] - 1;
+                    }
+
+                    var temp = row[i + 1];
+                    var idx = map[nextNumber];
+
+                    row[i + 1] = row[idx];
+                    row[idx] = temp;
+                    map[row[i + 1]] = i + 1;
+                    map[temp] = idx;
+                    count++;
+                }
+                i = i + 2;
+            }
+
+            return count;
+        }
     }
 }

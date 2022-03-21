@@ -28,5 +28,19 @@ namespace linked_list
             head = prev;
             return head;
         }
+
+        public ListNode ReverseEvenLengthGroups(ListNode head)
+        {
+            if (head == null)
+            {
+                return null;
+            }
+            ListNode prev = null, current = head, temp = null;
+            while (head != null)
+            {
+                //int first group
+
+            }
+        }
     }
 }
