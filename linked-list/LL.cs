@@ -29,18 +29,63 @@ namespace linked_list
             return head;
         }
 
-        public ListNode ReverseEvenLengthGroups(ListNode head)
+        public ListNode ReverseBetween(ListNode head, int left, int right)
         {
             if (head == null)
             {
-                return null;
+                return head;
             }
-            ListNode prev = null, current = head, temp = null;
+            ListNode l1 = this.getNodeByPos(head,left);
+            ListNode l2 = this.getNodeByPos(head,right);
+            //swap now
+            int temp = l1.val;
+            l1.val = l2.val;
+            l2.val = temp;
+            right--;
+            left++;
+            return head;
+
+        }
+
+        private ListNode getNodeByPos(ListNode head, int pos)
+        {
+            int counter = 1;
             while (head != null)
             {
-                //int first group
-
+                if (counter == pos)
+                {
+                    break;
+                }
+                counter++;
+                head = head.next;
             }
+            return head;
+        }
+        int position = 0;
+
+        public ListNode ReverseKGroup(ListNode head, int k)
+        {
+            ListNode curr = head;
+            int count = 0;
+            while (curr != null && count != k)
+            {
+                curr = curr.next;
+                count++;
+            }
+            if (count == k)
+            {
+                curr = ReverseKGroup(curr, k);
+                while (count-- > 0)
+                {
+                    ListNode tmp = head.next;
+                    head.next = curr;
+                    curr = head;
+                    head = tmp;
+                }
+                head = curr;
+            }
+            return head;
+
         }
     }
 }
