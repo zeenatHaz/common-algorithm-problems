@@ -237,6 +237,12 @@ namespace top_k_elements
             return sb.ToString();
         }
 
+        public void push()
+        {
+            Dictionary<int,int> lstD=new Dictionary<int,int>();
+            List<int> lst = new List<int>();
+            
+        }
         public bool IsSameCharButDifferentCase(char c1, char c2)
         {
             return Math.Abs(c1 - c2) == 32;

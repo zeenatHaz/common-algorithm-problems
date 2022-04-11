@@ -8,6 +8,7 @@
             int[] arr = { -2 ,-3,4};
             int n = 5, k = 2;
             Console.WriteLine(obj.printKMissing(arr, n, k));
+            
         }
     }
 }
