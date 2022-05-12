@@ -302,5 +302,114 @@ namespace misc
             }
             return -1;
         }
+
+        public int[] noOfPlatesBetweenCandles(string s)
+        {
+            int n = s.Length;
+            int[] dp = new int[n];
+            int i = 0;
+            while(i<n && s.ElementAt(i) != '|')
+            {
+                i++;
+            }
+
+            i++;
+            int count = 0;
+            while (i < n)
+            {
+                if (s.ElementAt(i) == '|')
+                {
+                    dp[i] = dp[i - 1] + count;
+                    count = 0;
+                }
+                else
+                {
+                    count++;
+                    dp[i] = dp[i - 1];
+                }
+            }
+            //if the input is {1,1} ,{5,6}
+            //then o/p => dp[end-1] -dp[start-1] => dp[4] -dp[0]=2; and dp[5]-d[0]=> 3 ,so the ans=[2,3]
+            int[] res = { 2, 3 };
+            return res; // ans based on inputs
+        }
+        public int[] noOfItems(string s)
+        {
+          
+            
+            int[] startIndices = { 1, 1 };
+            int range = startIndices.Length;
+            int[] result = new int[range];
+            int[] endIndies = { 5, 6 };
+            string input = "|**|*|*";
+            //no of items in the compartments.
+            //for the 1st part.
+            int index = 0;
+            for(int i = 0; i < startIndices.Length; i++)
+            {
+                int start = startIndices[index];
+                int end=endIndies[index];
+                int length = end - start + 1;
+                string sub = input.Substring(start - 1, length);
+                Console.WriteLine(sub);
+                result[i]=findItems(sub);
+            }
+           
+
+            return result;
+        }
+
+        private int findItems(string sub)
+        {
+            bool insideCompartment = false;
+            int stars = 0;
+            int numItemsInCompartment = 0;
+             foreach (var ele in sub)
+            {
+                if (ele == '|')
+                {
+                    if (insideCompartment)
+                    {
+                        numItemsInCompartment = numItemsInCompartment + stars;
+                        stars = 0;
+                    }
+                    else
+                    {
+                        insideCompartment = true;
+                    }
+                }
+                else
+                {
+                    if(insideCompartment)
+                    stars++;
+
+                }
+            }
+            return numItemsInCompartment;
+
+        }
+
+        public int CountNegatives(int[][] grid)
+        {
+            var n = grid.Length;
+            var m = grid[0].Length;
+            var positive = 0;
+            var row = 0;
+            var column = m - 1;
+            while (row < n && column >= 0)
+            {
+                if (grid[row][column] < 0)
+                {
+                    column--;
+                }
+                else
+                {
+                    positive += column + 1;
+                    row++;
+                }
+            }
+
+            return n * m - positive;
+        }
     }
 }

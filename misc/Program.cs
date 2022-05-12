@@ -9,46 +9,48 @@ namespace misc
     {
         public static void Main(string[] args)
         {
-            int[] time = { 30, 20, 150, 100, 40 };
-            int[] arr = { 1, 1, 2, 45, 46, 46 };int target = 47;
-            // NumPairsDivisibleBy60(time);
-            // twoSumUniq(arr, target);
-            // CountBinarySubstrings("001101");
-            string s = "Let's take LeetCode contest";
-            List<List<int>> l = new List<List<int>>();
-            List<int> x = new List<int> { 1, 1, 1 };
-            l.Add(x);
-             x = new List<int> { 0, 1, 0 };
-            l.Add(x);
-            x = new List<int> { 0, 0, 0 };
-            l.Add(x);
-            x = new List<int> { 1, 1, 0 };
-            l.Add(x);
-            //  gridProblem(l);
-            //  simpleCipher("vtaog",2);
-            // simpleCipher1("vtaog", 2);
-            //  ReverseWords(s);
-            string mono = "THTHTH";
-            // MinFlipsMonoIncr(mono);
-            // int[] team = { 3, 4, 3, 1, 6, 5 };int teamSize = 3;
-            // countTeams(team,teamSize);
-            string test = "abcabc";
-            // findAllKDisctintChars(test, 3);
-            //   var result= print_all_sum();
-            test obj = new test();
-            // obj.printSubArrays();
-            int[] nums = { 1, 2, 3, 4, 5, 4, 1 };
-            int maxSize = 4;
-            // obj.printLRUMisses(nums, maxSize);
-            int[] arr1= { 100, 100, 80, 70, 60 }; int cutOffrank = 4;
-          //  obj.CutOffRank(arr1, cutOffrank);
-            int[] abilites = {1,2,3,4 };
-            int noOfProccess = 15;
-            int numberOfProcessors = abilites.Length;
+            //  int[] time = { 30, 20, 150, 100, 40 };
+            //  int[] arr = { 1, 1, 2, 45, 46, 46 };int target = 47;
+            //  // NumPairsDivisibleBy60(time);
+            //  // twoSumUniq(arr, target);
+            //  // CountBinarySubstrings("001101");
+            //  string s = "Let's take LeetCode contest";
+            //  List<List<int>> l = new List<List<int>>();
+            //  List<int> x = new List<int> { 1, 1, 1 };
+            //  l.Add(x);
+            //   x = new List<int> { 0, 1, 0 };
+            //  l.Add(x);
+            //  x = new List<int> { 0, 0, 0 };
+            //  l.Add(x);
+            //  x = new List<int> { 1, 1, 0 };
+            //  l.Add(x);
+            //  //  gridProblem(l);
+            //  //  simpleCipher("vtaog",2);
+            //  // simpleCipher1("vtaog", 2);
+            //  //  ReverseWords(s);
+            //  string mono = "THTHTH";
+            //  // MinFlipsMonoIncr(mono);
+            //  // int[] team = { 3, 4, 3, 1, 6, 5 };int teamSize = 3;
+            //  // countTeams(team,teamSize);
+            //  string test = "abcabc";
+            //  // findAllKDisctintChars(test, 3);
+            //  //   var result= print_all_sum();
+            //  test obj = new test();
+            //  // obj.printSubArrays();
+            //  int[] nums = { 1, 2, 3, 4, 5, 4, 1 };
+            //  int maxSize = 4;
+            //  // obj.printLRUMisses(nums, maxSize);
+            //  int[] arr1= { 100, 100, 80, 70, 60 }; int cutOffrank = 4;
+            ////  obj.CutOffRank(arr1, cutOffrank);
+            //  int[] abilites = {1,2,3,4 };
+            //  int noOfProccess = 15;
+            //  int numberOfProcessors = abilites.Length;
 
-            // Console.WriteLine(obj.MultiProcessors(numberOfProcessors, abilites, noOfProccess));
-            int[] coins = { 1, 2, 5 }; int amount = 11;
-            Console.WriteLine(obj.CoinChange(coins,amount));
+            //  // Console.WriteLine(obj.MultiProcessors(numberOfProcessors, abilites, noOfProccess));
+            //  int[] coins = { 1, 2, 5 }; int amount = 11;
+            //  Console.WriteLine(obj.CoinChange(coins,amount));
+            prac obj = new prac();
+            obj.TransactionLogs();
         }
 
      
