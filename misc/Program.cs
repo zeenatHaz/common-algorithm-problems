@@ -50,7 +50,7 @@ namespace misc
             //  int[] coins = { 1, 2, 5 }; int amount = 11;
             //  Console.WriteLine(obj.CoinChange(coins,amount));
             prac obj = new prac();
-            obj.TransactionLogs();
+            obj.maxProfit();
         }
 
      

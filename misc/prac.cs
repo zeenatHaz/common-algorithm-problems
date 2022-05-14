@@ -209,13 +209,14 @@ namespace misc
             Dictionary<int, int> dt = new Dictionary<int, int>();
             for (int i = 0; i < logs.GetLength(0); i++)
             {
-               
-                var row1= Enumerable.Range(0, logs.GetLength(1))
+
+                var row1 = Enumerable.Range(0, logs.GetLength(1))
                .Select(x => logs[i, x])
                .ToArray();
 
                 int log1 = row1[0]; int log2 = row1[1];
-                if (dt.ContainsKey(log1)){
+                if (dt.ContainsKey(log1))
+                {
                     dt[log1]++;
                 }
                 else
@@ -231,13 +232,222 @@ namespace misc
                     dt.Add(log2, 1);
                 }
             }
-            foreach(var key in dt)
+            foreach (var key in dt)
             {
-                if(key.Value >= 2)
+                if (key.Value >= 2)
                 {
                     result.Add(key.Key);
                 }
             }
+        }
+        public void winnnignSequence()
+        {
+            List<int> temp = new List<int>();
+            List<int> res = new List<int>();
+            int lower = 3, upper = 10, n = 5;
+            for (int i = lower; i <= upper; i++)
+            {
+                temp.Add(i);
+            }
+            for (int i = upper - 1; i >= lower; i--)
+            {
+                temp.Add(i);
+            }
+            int startingNumber = temp.IndexOf(upper - 1);
+            var x = temp.GetRange(startingNumber, n);
+        }
+
+        public int NumPairsDivisibleBy60(int[] time)
+        {
+            int count = 0;
+            Dictionary<int, int> map = new Dictionary<int, int>();
+            foreach (var ele in time)
+            {
+                int remainder = ele % 60;  //140
+                int target = 60 - remainder;
+                if (map.ContainsKey(target))
+                {
+                    count++;
+                }
+                if(remainder == 0)
+                {
+                    remainder = 60;
+                }
+                if (map.ContainsKey(remainder))
+                {
+                    map[remainder]++;
+                }
+                else
+                {
+                    map.Add(remainder, 1);
+                }
+            }
+            return count;
+        }
+        public long shipMentImbabalance()
+        {
+            int[] arr = { 1, 2, 3 };
+            long ans = 0;
+            for (int i = 0; i < arr.Length; i++)
+            {
+                int min = arr[i], max = arr[i];
+                for(int j = i+1; j < arr.Length; j++)
+                {
+                    min = Math.Min(min, arr[j]);
+                    max = Math.Max(max, arr[j]);
+                    ans = ans + (max - min);
+                }
+            }
+            return ans; 
+            
+        }
+        public void maxProfit()
+        {
+            int k = 1;
+            int n = 4;
+            int maxProfit = 0;
+            //so I can chose 2*k chunks ==> 2* 2=4.
+            // k=3 ,then I can choose 2*k=>  6 chunks.
+            int[] profit = { -6, 3, 6, -3 };
+            for(int i = 0; i < n / 2; i++)
+            {
+                int sum = 0;
+                for(int j = 0; j < k; j++)
+                {
+                    int currIndex = i + j;
+                    int oppositeIndex = (currIndex + n / 2) % n;
+                     sum=sum+profit[currIndex] +profit[oppositeIndex];
+                    maxProfit = Math.Max(sum, maxProfit);
+                }
+            }
+            Console.WriteLine(maxProfit);
+        }
+
+        public int[] AssignBikes(int[][] workers, int[][] bikes)
+        {
+            var distanceMap = new Dictionary<int, List<Tuple<int, int>>>();
+           
+            for (var i = 0; i < workers.Length; i++)
+                for (var j = 0; j < bikes.Length; j++)
+                {
+                    var distance = ManhattanDistance(workers[i], bikes[j]);
+                    if (distanceMap.ContainsKey(distance))
+                        distanceMap[distance].Add(new Tuple<int, int>(i, j));
+
+
+                   
+                    
+                    else
+                        distanceMap.Add(distance, new List<Tuple<int, int>>() { new Tuple<int, int>(i, j) });
+                }
+
+            var keys = distanceMap.Keys.OrderBy(key => key);
+            var usedBike = new HashSet<int>();
+            var result = new int[workers.Length];
+            for (int i = 0; i < workers.Length; i++)
+                result[i] = -1;
+
+            foreach (var key in keys)
+            {
+                var pairs = distanceMap[key];
+                foreach (var pair in pairs)
+                {
+                    var workerId = pair.Item1;
+                    var bikeId = pair.Item2;
+                    if (result[workerId] == -1 && !usedBike.Contains(bikeId))
+                    {
+                        result[workerId] = bikeId;
+                        usedBike.Add(bikeId);
+                    }
+                }
+            }
+
+            return result;
+        }
+
+        public int ManhattanDistance(int[] worker, int[] bike)
+        {
+            return Math.Abs(worker[0] - bike[0]) + Math.Abs(worker[1] - bike[1]);
+        }
+
+
+        public int MinCostConnectPoints(int[][] points)
+        {
+            int cost = 0;
+            int l = points.Length;
+            var connections = new List<Tuple<int, int, int>>();
+            for(int i = 0; i < points.Length; i++)
+            {
+                for(int j = 0; j < points.Length; j++)
+                {
+                    int dis = Math.Abs(points[j][0] - points[i][0]) - Math.Abs(points[j][1] - points[i][1]);
+                    connections.Add(new Tuple<int, int, int>(dis, i, j)); //map is ready
+
+                }
+            }
+            //sort the items by dis.
+            connections.Sort((x, y) => x.Item1.CompareTo(y.Item1));
+
+            var uf = new UnionFind(l);
+            foreach(var con in connections)
+            {
+                if (uf.IsUnionPosssible(con.Item2, con.Item3))
+                {
+                    cost = cost + con.Item1;
+                }
+            }
+            return cost;
+        }
+
+    }
+    public class UnionFind
+    {
+        int[] parent;
+        int[] rank;
+        public UnionFind(int n)
+        {
+            parent = new int[n];
+            rank = new int[n];
+
+            for(int i = 0; i < n; i++)
+            {
+                parent[i] = i;
+            }
+        }
+
+        public int find(int a)
+        {
+            if (parent[a] == a)
+            {
+                return a;
+            }
+            parent[a] = find(parent[a]);
+            return parent[a];
+        }
+
+        public bool IsUnionPosssible(int a,int b)
+        {
+            int aRoot = find(a);
+            int bRoot = find(b);
+            //if both the roots are equal then return false;
+            if (aRoot == bRoot)
+            {
+                return false;
+            }
+            if(rank[aRoot] < rank[bRoot])
+            {
+                parent[aRoot] = bRoot;
+            }else if (rank[aRoot] > rank[bRoot])
+            {
+                parent[bRoot] = aRoot;
+            }
+            else
+            {
+                parent[bRoot] = aRoot;
+                rank[aRoot]++;
+            }
+
+            return true;
         }
     }
 }
