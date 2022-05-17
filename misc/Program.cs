@@ -50,8 +50,13 @@ namespace misc
             //  int[] coins = { 1, 2, 5 }; int amount = 11;
             //  Console.WriteLine(obj.CoinChange(coins,amount));
             prac obj = new prac();
-            obj.maxProfit();
+            // obj.maxProfit();
+             obj.findCombinations(5);
+          
+
+
         }
+
 
      
         private static List<string> findAllKDisctintChars(string s,int k)

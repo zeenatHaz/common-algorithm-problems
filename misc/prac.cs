@@ -369,7 +369,8 @@ namespace misc
         {
             return Math.Abs(worker[0] - bike[0]) + Math.Abs(worker[1] - bike[1]);
         }
-
+      
+      
 
         public int MinCostConnectPoints(int[][] points)
         {
@@ -399,7 +400,62 @@ namespace misc
             return cost;
         }
 
+
+
+        public void findCombinations(int n)
+        {
+            // array to store the combinations
+            // It can contain max n elements
+            int[] arr = new int[n];
+
+            // find all combinations
+            findCombinationsUtil(arr, 0, n, n);
+        }
+
+        public void findCombinationsUtil(int[] arr, int index,
+                                 int num, int reducedNum)
+        {
+            // Base condition
+            if (reducedNum < 0)
+                return;
+
+            // If combination is
+            // found, print it
+            if (reducedNum == 0)
+            {
+                for (int i = 0; i < index; i++)
+                    Console.Write(arr[i] + " ");
+                Console.WriteLine();
+                return;
+            }
+
+            // Find the previous number
+            // stored in arr[]. It helps
+            // in maintaining increasing
+            // order
+            int prev = (index == 0) ?
+                                  1 : arr[index - 1];
+
+            // note loop starts from
+            // previous number i.e. at
+            // array location index - 1
+            for (int k = prev; k <= num; k++)
+            {
+                // next element of
+                // array is k
+                arr[index] = k;
+
+                // call recursively with
+                // reduced number
+                findCombinationsUtil(arr, index + 1, num,
+                                         reducedNum - k);
+            }
+        }
+
+
+      
     }
+
     public class UnionFind
     {
         int[] parent;
@@ -449,5 +505,7 @@ namespace misc
 
             return true;
         }
+
+       
     }
 }
